@@ -1,0 +1,13 @@
+RewriteEngine on
+
+RewriteCond %{SERVER_PORT} ^443$
+RewriteRule ^(.*)$ http://%{HTTP_HOST}/$1 [R=301,L]
+
+RewriteCond $1 !^(index\.php|resources|robots\.txt)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L,QSA] 
+
+<Files "index.php">
+AcceptPathInfo On
+</Files>
